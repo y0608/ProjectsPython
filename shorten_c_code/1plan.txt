@@ -1,0 +1,11 @@
+delete comments
+shorten variable,structure,function names
+    one, two letters
+make everything one line (maximum 40 characters per line)
+
+
+//small things
+a+=1 -> a++
+if(a==0) -> if(!a)
+if(a!=0) -> if(a)
+
