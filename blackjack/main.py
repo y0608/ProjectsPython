@@ -1,9 +1,25 @@
+from cgitb import reset
 import cards
 
+NUMBER_DECKS = 1
+
+all_cards = cards.generate_decks(NUMBER_DECKS)
+player_cards = []
+dealer_cards = []
+
+played_cards = 0
 
 
-player_cards=[]
-dealer_cards=[]
+def reset_table_cards():
+    player_cards.clear()
+    dealer_cards.clear()
+
+
+def reset_game():
+    all_cards = cards.generate_decks(NUMBER_DECKS)
+    played_cards = 0
+    reset_table_cards()
+
 
 def print_table():
     print("**********")
@@ -14,20 +30,37 @@ def print_table():
         cards.print_card(card)
     print("**********")
 
-def deal():
-    all_card = cards.generate_decks(1)
-    player_cards.append(all_card[0])
-    player_cards.append(all_card[1])
-    
-    dealer_cards.append(all_card[2])
-    print_table()
-    #play
-    # dealer_cards.append(all_card[3])
-    # print_table()
-def reset_cards():
-    player_cards.clear()
-    dealer_cards.clear()
 
-while(input()==''):
-    deal()
-    reset_cards()
+def give_player_card():
+    player_cards.append(all_cards[-1])
+    all_cards.pop()
+
+
+def give_dealer_card():
+    dealer_cards.append(all_cards[-1])
+    all_cards.pop()
+
+
+def deal():
+    give_player_card()
+    give_player_card()
+    give_dealer_card()
+    played_cards += 3
+
+
+def game():  
+    while(len(all_cards) != 0):
+        deal()
+        player_play()
+        dealer_play() #dealer stand on 17?!
+        reset_table_cards()
+
+# TODO: gamemodes
+    #you vs dealer
+    #you and other bots on the table vs dealer
+    #bot vs dealer
+    #basic strategy trainer
+        #only soft,hard or splitting
+    #card counting trainer
+    
+# TODO: ui

@@ -7,6 +7,7 @@ def card_value(card):
         return 0
     else:
         return -1
-
+#TODO:
+#deck estimation -> imam kolko karti sa izigrani prosto trqbva da razdelq na 54?>?
 #running count
 #true count
