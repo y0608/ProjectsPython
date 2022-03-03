@@ -7,6 +7,11 @@ vals = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
 suits = ['spades', 'clubs', 'hearts', 'diamonds']
 deck = list(itertools.product(vals, suits))
 
+def card_value(card):
+    if(card[0]>='2' or card[0]<='10'):
+        return int(card[0])
+    if(card[0]=='J' or card[0]=='Q' or card[0]=='K')
+    return 10
 
 def generate_decks(number_of_decks):
     all_decks = []

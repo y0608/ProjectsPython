@@ -1,4 +1,5 @@
 from cgitb import reset
+from counting import cards_value
 import cards
 
 NUMBER_DECKS = 1
@@ -16,6 +17,7 @@ def reset_table_cards():
 
 
 def reset_game():
+    global played_cards
     all_cards = cards.generate_decks(NUMBER_DECKS)
     played_cards = 0
     reset_table_cards()
@@ -25,9 +27,11 @@ def print_table():
     print("**********")
     for card in dealer_cards:
         cards.print_card(card)
+    print(cards_value(dealer_cards))
     print("\n")
     for card in player_cards:
         cards.print_card(card)
+    print(cards_value(player_cards))
     print("**********")
 
 
@@ -42,6 +46,7 @@ def give_dealer_card():
 
 
 def deal():
+    global played_cards
     give_player_card()
     give_player_card()
     give_dealer_card()
@@ -51,10 +56,19 @@ def deal():
 def game():  
     while(len(all_cards) != 0):
         deal()
-        player_play()
-        dealer_play() #dealer stand on 17?!
+        print_table()
+        # player_play()
+        # dealer_play() #dealer stand on 17?!
         reset_table_cards()
+        
+game()
 
+
+# def trainer():
+#     while(len(all_cards) != 0):
+#         deal()
+        
+#         reset_table_cards()
 # TODO: gamemodes
     #you vs dealer
     #you and other bots on the table vs dealer
